@@ -104,3 +104,55 @@ def check_for_winner(board):
 # print_board(board)
 # print(check_for_winner(board))
 # ###################################################
+
+
+# Check for legal moves
+def move_is_legal(board,player,row,col):
+    x_count = 0
+    o_count = 0
+    for row in rows:
+        for col in cols:
+            if board[row][col] == "x":
+                x_count += 1
+            if board[row][col] == "o":
+                o_count += 1
+    if x_count == o_count and player != "x":
+        return False
+    elif x_count > o_count and player != "o":
+        return False
+    elif x_count < o_count:
+        return False
+        
+    
+    if board[row][col] == "-":
+        return True
+    else:
+        return False
+    
+###################################################
+# move_is_legal unit tests
+
+#x making a legal move
+board = [["x","o","-"],["-","-","-"],["-","-","-"]]
+player = "x"
+row = 2
+col = 1
+print_board(board)
+print("Player " + str(player) + " move in row " + str(row) + ", col " + str(col) +  " is legal: " + str(move_is_legal(board,player,row,col)))
+
+#o making an illegal move
+board = [["x","o","-"],["-","-","-"],["-","-","-"]]
+player = "o"
+row = 2
+col = 1
+print_board(board)
+print("Player " + str(player) + " move in row " + str(row) + ", col " + str(col) +  " is legal: " + str(move_is_legal(board,player,row,col)))
+
+#x making an illegal move
+board = [["x","o","-"],["-","-","-"],["-","-","-"]]
+player = "o"
+row = 0
+col = 0
+print_board(board)
+print("Player " + str(player) + " move in row " + str(row) + ", col " + str(col) +  " is legal: " + str(move_is_legal(board,player,row,col)))
+###################################################
