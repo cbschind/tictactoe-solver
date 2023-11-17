@@ -126,6 +126,8 @@ def move_is_legal(board,player,r,c):
         return False
     elif x_count > o_count and player != "o":
         return False
+    elif x_count - o_count > 1:
+        return False
     elif x_count < o_count:
         return False
         
